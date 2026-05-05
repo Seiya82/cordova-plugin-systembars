@@ -1,0 +1,30 @@
+{
+  "name": "cordova-plugin-systembars",
+  "version": "1.0.0",
+  "description": "Controls Android 15 system bar icon appearance (light/dark) without breaking Edge-to-Edge transparency.",
+  "main": "www/SystemBarsPlugin.js",
+  "cordova": {
+    "id": "cordova-plugin-systembars",
+    "platforms": ["android"]
+  },
+  "keywords": [
+    "cordova",
+    "cordova-plugin",
+    "android",
+    "statusbar",
+    "navigationbar",
+    "edge-to-edge",
+    "android15",
+    "windowinsetscontroller",
+    "outsystems"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "cordovaDependencies": {
+      "1.0.0": {
+        "cordova-android": ">=10.0.0"
+      }
+    }
+  }
+}

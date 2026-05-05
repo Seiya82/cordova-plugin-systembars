@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    id="cordova-plugin-systembars"
+    version="1.0.0">
+
+    <name>SystemBars</name>
+    <description>Controls Android 15 system bar icon appearance (light/dark) without breaking Edge-to-Edge transparency. Uses WindowInsetsControllerCompat — the API recommended by Google for SDK 35+.</description>
+    <license>MIT</license>
+    <keywords>android,statusbar,navigationbar,edge-to-edge,android15,windowinsetscontroller</keywords>
+
+    <!-- JS bridge — exposes window.SystemBars on Android; no-op stub on other platforms -->
+    <js-module src="www/SystemBarsPlugin.js" name="SystemBars">
+        <clobbers target="window.SystemBars" />
+    </js-module>
+
+    <platform name="android">
+        <!-- Register the plugin in Cordova's config -->
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="SystemBars">
+                <param name="android-package"
+                    value="com.outsystems.plugins.systembars.SystemBarsPlugin" />
+            </feature>
+        </config-file>
+
+        <!-- Java source -->
+        <source-file src="src/android/SystemBarsPlugin.java"
+            target-dir="src/com/outsystems/plugins/systembars" />
+
+        <!-- AndroidX Core already bundled in MABS 12, but declare for safety -->
+        <framework src="androidx.core:core:1.12.0" />
+    </platform>
+</plugin>
