@@ -22,9 +22,6 @@ var exec = require('cordova/exec');
 var PLUGIN = 'SystemBars';
 
 function call(action, lightBars, successCb, errorCb) {
-    if (typeof lightBars !== 'boolean') {
-        lightBars = !!lightBars;
-    }
     exec(
         successCb || function () {},
         errorCb   || function (e) { console.warn('[SystemBars]', e); },
@@ -35,29 +32,31 @@ function call(action, lightBars, successCb, errorCb) {
 }
 
 var SystemBars = {
-    /**
-     * Set appearance for BOTH status bar and navigation bar.
-     * @param {boolean} lightBars - true = dark icons, false = light icons
-     */
-    setAppearance: function (lightBars, successCb, errorCb) {
-        call('setAppearance', lightBars, successCb, errorCb);
+
+    // Both
+    setDarkIcons: function (successCb, errorCb) {
+        call('setAppearance', true, successCb, errorCb);
+    },
+    setLightIcons: function (successCb, errorCb) {
+        call('setAppearance', false, successCb, errorCb);
     },
 
-    /**
-     * Set appearance for STATUS BAR only.
-     * @param {boolean} lightBars - true = dark icons, false = light icons
-     */
-    setStatusBarAppearance: function (lightBars, successCb, errorCb) {
-        call('setStatusBarAppearance', lightBars, successCb, errorCb);
+    // Only status bar
+    setStatusDarkIcons: function (successCb, errorCb) {
+        call('setStatusBarAppearance', true, successCb, errorCb);
+    },
+    setStatusLightIcons: function (successCb, errorCb) {
+        call('setStatusBarAppearance', false, successCb, errorCb);
     },
 
-    /**
-     * Set appearance for NAVIGATION BAR only.
-     * @param {boolean} lightBars - true = dark icons, false = light icons
-     */
-    setNavBarAppearance: function (lightBars, successCb, errorCb) {
-        call('setNavBarAppearance', lightBars, successCb, errorCb);
+    // Only navigation bar
+    setNavDarkIcons: function (successCb, errorCb) {
+        call('setNavBarAppearance', true, successCb, errorCb);
+    },
+    setNavLightIcons: function (successCb, errorCb) {
+        call('setNavBarAppearance', false, successCb, errorCb);
     }
+
 };
 
 module.exports = SystemBars;
