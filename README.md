@@ -32,20 +32,22 @@ In **Extensibility Configurations** of your OutSystems Mobile App:
 ## JavaScript API
 
 ```js
-// ✅ Both bars — dark icons (use on light/white backgrounds)
-window.SystemBars.setAppearance(true);
+// Both bars — dark icons (use on light/white backgrounds)
+window.SystemBars.setDarkIcons();
 
-// ✅ Both bars — light icons (use on dark backgrounds)
-window.SystemBars.setAppearance(false);
+// Both bars — light icons (use on dark backgrounds)
+window.SystemBars.setLightIcons();
 
-// ✅ Status bar only
-window.SystemBars.setStatusBarAppearance(true);
+// Status bar only
+window.SystemBars.setStatusDarkIcons();
+window.SystemBars.setStatusLightIcons();
 
-// ✅ Navigation bar only
-window.SystemBars.setNavBarAppearance(true);
+// Navigation bar only
+window.SystemBars.setNavDarkIcons();
+window.SystemBars.setNavLightIcons();
 
 // With callbacks
-window.SystemBars.setAppearance(true,
+window.SystemBars.setDarkIcons(
     function() { console.log('OK'); },
     function(e) { console.error('Error:', e); }
 );
@@ -53,22 +55,26 @@ window.SystemBars.setAppearance(true,
 
 ## Logic summary
 
-| `lightBars` value | Icon colour | Use when background is... |
+| Method | Icon colour | Use when background is... |
 |---|---|---|
-| `true` | ⚫ Dark/Black | Light (white, grey, etc.) |
-| `false` | ⚪ Light/White | Dark |
+| `setDarkIcons()` | ⚫ Dark/Black | Light (white, grey, etc.) |
+| `setLightIcons()` | ⚪ Light/White | Dark |
 
 ## OutSystems usage pattern
 
-Create a **Client Action** `SetSystemBarsAppearance` with Input `IsLightBackground (Boolean)`:
+Create a **Client Action** for each case and call it in `OnReady` of each Screen:
 
 ```js
+// "SetDarkSystemIcons" — for screens with light backgrounds
 if (window.SystemBars) {
-    window.SystemBars.setAppearance($parameters.IsLightBackground);
+    window.SystemBars.setDarkIcons();
+}
+
+// "SetLightSystemIcons" — for screens with dark backgrounds
+if (window.SystemBars) {
+    window.SystemBars.setLightIcons();
 }
 ```
-
-Call it in `OnReady` of each Screen passing `True` or `False` depending on the screen theme.
 
 ## Platform support
 
